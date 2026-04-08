@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>More Doors Into Your Clinic — Fenn Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #090909;
+    --off-black: #101010;
+    --card: #141414;
+    --border: #1e1e1e;
+    --border-mid: #2a2a2a;
+    --white: #f0ede6;
+    --accent: #c8f060;
+    --muted: #555;
+    --mid: #888;
+    --display: 'Syne', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5vw;
+    background: rgba(9,9,9,0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: var(--display); font-size: 1.1rem; font-weight: 800;
+    letter-spacing: -0.02em; color: var(--white); text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-cta {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em;
+    background: var(--accent); color: #000; padding: 10px 20px;
+    border-radius: 3px; text-decoration: none; transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: .85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 140px 5vw 80px;
+    position: relative; overflow: hidden;
+  }
+
+  /* Large background number */
+  .hero-bg-num {
+    position: absolute; right: -2vw; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--display); font-size: clamp(180px, 28vw, 380px);
+    font-weight: 800; color: transparent;
+    -webkit-text-stroke: 1px rgba(200,240,96,0.07);
+    pointer-events: none; user-select: none;
+    letter-spacing: -0.04em; line-height: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp .5s .1s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 6.5vw, 6rem);
+    font-weight: 800; line-height: 1.0; letter-spacing: -0.035em;
+    max-width: 860px;
+    opacity: 0; animation: fadeUp .65s .25s forwards;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+
+  .hero-sub {
+    max-width: 560px; margin-top: 28px;
+    font-size: 1.05rem; font-weight: 300; color: #999; line-height: 1.7;
+    opacity: 0; animation: fadeUp .65s .4s forwards;
+  }
+
+  .hero-cta-row {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    margin-top: 44px;
+    opacity: 0; animation: fadeUp .65s .55s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: #000;
+    font-family: var(--body); font-size: 0.95rem; font-weight: 500;
+    padding: 16px 30px; border-radius: 3px; text-decoration: none;
+    transition: transform .2s, opacity .2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+  .btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .hero-footnote { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+  /* DOOR DIAGRAM */
+  .diagram-section {
+    padding: 80px 5vw 100px;
+    border-top: 1px solid var(--border);
+    background: var(--off-black);
+  }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; font-weight: 500;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
+    max-width: 680px;
+  }
+
+  .diagram-wrap {
+    display: grid; grid-template-columns: 1fr 1px 1fr;
+    gap: 0; margin-top: 60px;
+    border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden;
+  }
+
+  .diagram-col {
+    padding: 48px 40px;
+    background: var(--card);
+  }
+
+  .diagram-divider {
+    background: var(--border-mid);
+  }
+
+  .diagram-col h3 {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 28px; color: var(--mid);
+  }
+
+  .diagram-col h3 .badge {
+    display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid var(--border-mid);
+    padding: 4px 10px; border-radius: 40px; margin-left: 10px;
+    font-family: var(--body); vertical-align: middle; color: var(--muted);
+    font-weight: 400;
+  }
+
+  .diagram-col.active h3 { color: var(--white); }
+  .diagram-col.active h3 .badge {
+    border-color: var(--accent); color: var(--accent);
+  }
+
+  /* Door visualisation */
+  .doors-row {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+  }
+
+  .door {
+    width: 40px; height: 56px;
+    border: 1.5px solid var(--border-mid);
+    border-radius: 3px;
+    position: relative;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 6px;
+    transition: border-color .2s;
+  }
+
+  .door::before {
+    content: '';
+    position: absolute; top: 50%; right: 8px;
+    transform: translateY(-50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--border-mid);
+  }
+
+  .door.lit {
+    border-color: var(--accent);
+    background: rgba(200,240,96,0.05);
+  }
+  .door.lit::before { background: var(--accent); }
+
+  .door-label {
+    font-size: 0.58rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted); text-align: center;
+  }
+  .door.lit .door-label { color: var(--accent); }
+
+  .diagram-foot {
+    margin-top: 20px; font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+  }
+  .diagram-col.active .diagram-foot { color: #aaa; }
+
+  /* WHAT WE DO */
+  .what-section { padding: 100px 5vw; }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 2px; margin-top: 52px;
+    border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden;
+  }
+
+  .step-card {
+    background: var(--card); padding: 32px 24px;
+    position: relative; overflow: hidden;
+    transition: background .2s;
+  }
+  .step-card:hover { background: #1a1a1a; }
+  .step-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .step-card:hover::after { transform: scaleX(1); }
+
+  .step-n {
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .step-card h3 {
+    font-family: var(--display); font-size: 0.95rem; font-weight: 700;
+    letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.25;
+  }
+  .step-card p { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
+
+  /* VIDEO */
+  .video-section {
+    padding: 100px 5vw;
+    background: var(--off-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .video-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .video-placeholder {
+    background: var(--card);
+    border: 1px solid var(--border-mid);
+    border-radius: 6px;
+    aspect-ratio: 16/9;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: border-color .25s;
+  }
+  .video-placeholder:hover { border-color: var(--accent); }
+
+  .play-btn {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .2s;
+  }
+  .video-placeholder:hover .play-btn { transform: scale(1.08); }
+  .play-btn svg { width: 20px; height: 20px; margin-left: 3px; }
+
+  .video-placeholder span {
+    font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .video-copy h2 { max-width: 100%; }
+  .video-copy p {
+    margin-top: 20px; color: #999; font-size: 0.92rem; line-height: 1.75;
+  }
+
+  .script-lines {
+    margin-top: 28px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .script-line {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 0.85rem; color: var(--mid); line-height: 1.5;
+  }
+  .script-line::before {
+    content: '"';
+    font-family: var(--display); font-size: 1.4rem; color: var(--accent);
+    line-height: 1; flex-shrink: 0; margin-top: -2px;
+  }
+
+  /* WHY IT WORKS */
+  .why-section { padding: 100px 5vw; }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 52px;
+    border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden;
+  }
+
+  .why-card {
+    background: var(--card); padding: 40px 32px;
+  }
+
+  .why-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border-mid); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 1.1rem; margin-bottom: 20px;
+  }
+
+  .why-card h3 {
+    font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  .why-card p { font-size: 0.87rem; color: var(--mid); line-height: 1.65; }
+
+  /* COMMERCIAL HOOK */
+  .commercial-section {
+    padding: 100px 5vw;
+    background: var(--off-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .commercial-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+
+  .commercial-copy h2 { max-width: 100%; }
+  .commercial-copy p {
+    margin-top: 20px; font-size: 0.95rem; color: #999; line-height: 1.75;
+  }
+
+  .scenario-cards {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+
+  .scenario {
+    background: var(--card); border: 1px solid var(--border-mid);
+    border-radius: 4px; padding: 28px 30px;
+    position: relative; overflow: hidden;
+  }
+
+  .scenario::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent);
+  }
+
+  .scenario h4 {
+    font-family: var(--display); font-size: 0.95rem; font-weight: 700;
+    letter-spacing: -0.01em; margin-bottom: 8px;
+  }
+  .scenario p { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 130px 5vw;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; bottom: -400px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(200,240,96,0.055) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    max-width: 100%; margin: 12px auto 0;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+  }
+
+  .cta-section .sub {
+    max-width: 440px; margin: 20px auto 44px;
+    font-size: 0.95rem; color: #777; line-height: 1.7;
+  }
+
+  .cta-note {
+    margin-top: 18px; font-size: 0.78rem; color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* KEYFRAMES */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .video-inner, .commercial-inner { grid-template-columns: 1fr; gap: 44px; }
+    .diagram-wrap { grid-template-columns: 1fr; }
+    .diagram-divider { width: 100%; height: 1px; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    nav .nav-cta { display: none; }
+    h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Fenn<span>.</span>Digital</a>
+  <a href="https://wa.me/YOURNUMBER" class="nav-cta" target="_blank">See how this works →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-num" aria-hidden="true">10</div>
+  <p class="hero-eyebrow">Google Business Profiles for Private Clinics</p>
+  <h1>Turn every clinician<br>into a <em>Google booking<br>channel.</em></h1>
+  <p class="hero-sub">We set up and optimise individual Google profiles for your clinicians — increasing visibility, reviews, and direct patient enquiries. One clinic. Multiple doors.</p>
+  <div class="hero-cta-row">
+    <a href="https://wa.me/YOURNUMBER" class="btn-primary" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.12 1.533 5.845L.054 23.5l5.8-1.519A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.5-5.084-1.37l-.363-.214-3.443.901.92-3.349-.235-.375A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      See how this would work for your clinic
+    </a>
+    <span class="hero-footnote">Free conversation. No pitch deck.</span>
+  </div>
+</section>
+
+<!-- DIAGRAM -->
+<section class="diagram-section">
+  <p class="section-label reveal">The concept</p>
+  <h2 class="reveal">One clinic listing gives you one door.<br>We give you ten.</h2>
+
+  <div class="diagram-wrap reveal">
+    <!-- Left: single listing -->
+    <div class="diagram-col">
+      <h3>Clinic profile only <span class="badge">Most clinics</span></h3>
+      <div class="doors-row">
+        <div class="door lit">
+          <span class="door-label">Clinic</span>
+        </div>
+        <!-- dim placeholder doors to show missed opportunity -->
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+        <div class="door"><span class="door-label">—</span></div>
+      </div>
+      <p class="diagram-foot">1 listing. 1 chance to appear in search. Patients searching for a specific consultant — or a specific condition — won't find you.</p>
+    </div>
+
+    <div class="diagram-divider"></div>
+
+    <!-- Right: clinician profiles -->
+    <div class="diagram-col active">
+      <h3>Clinic + clinician profiles <span class="badge">Fenn Digital</span></h3>
+      <div class="doors-row">
+        <div class="door lit"><span class="door-label">Clinic</span></div>
+        <div class="door lit"><span class="door-label">Dr A</span></div>
+        <div class="door lit"><span class="door-label">Dr B</span></div>
+        <div class="door lit"><span class="door-label">Dr C</span></div>
+        <div class="door lit"><span class="door-label">Dr D</span></div>
+        <div class="door lit"><span class="door-label">Dr E</span></div>
+        <div class="door lit"><span class="door-label">Dr F</span></div>
+        <div class="door lit"><span class="door-label">Dr G</span></div>
+        <div class="door lit"><span class="door-label">Dr H</span></div>
+        <div class="door lit"><span class="door-label">Dr I</span></div>
+      </div>
+      <p class="diagram-foot">10 clinicians = 10 separate Google entries. Each one ranks for their name, specialty, and location. More coverage. More enquiries. More bookings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what-section">
+  <p class="section-label reveal">What we do</p>
+  <h2 class="reveal">End-to-end. No admin burden on your team.</h2>
+  <div class="steps-grid reveal">
+    <div class="step-card">
+      <p class="step-n">01</p>
+      <h3>Create & verify clinician profiles</h3>
+      <p>We handle setup and Google verification for every clinician in your practice.</p>
+    </div>
+    <div class="step-card">
+      <p class="step-n">02</p>
+      <h3>Link to profile pages</h3>
+      <p>Each GBP links to their dedicated page on your website — boosting both SEO and trust.</p>
+    </div>
+    <div class="step-card">
+      <p class="step-n">03</p>
+      <h3>Optimise categories & services</h3>
+      <p>We set the right specialty categories, services, and keywords so Google shows each profile to the right patients.</p>
+    </div>
+    <div class="step-card">
+      <p class="step-n">04</p>
+      <h3>Set up a review flow</h3>
+      <p>Each clinician gets their own review funnel — building distributed social proof across the practice.</p>
+    </div>
+    <div class="step-card">
+      <p class="step-n">05</p>
+      <h3>Maintain consistency</h3>
+      <p>NAP consistency, regular updates, photo management — handled across every listing, ongoing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <div class="video-inner">
+    <div class="video-placeholder reveal" role="button" aria-label="Watch explanation video">
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span>2 min — add your video here</span>
+    </div>
+    <div class="video-copy">
+      <p class="section-label reveal">In plain English</p>
+      <h2 class="reveal">Why most clinics are invisible on Google — and how to fix it.</h2>
+      <div class="script-lines reveal">
+        <div class="script-line">Most clinics rely on one Google listing. That's one shot at appearing in search.</div>
+        <div class="script-line">Google actually ranks individual practitioners separately — your consultants can each have their own profile.</div>
+        <div class="script-line">We set this up for you, end-to-end. Your team doesn't touch it.</div>
+        <div class="script-line">More profiles means more map coverage, more reviews, and more patients finding you first.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT WORKS -->
+<section class="why-section">
+  <p class="section-label reveal">Why it works</p>
+  <h2 class="reveal">Google is built for this. Most clinics just don't use it.</h2>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-icon">◈</div>
+      <h3>Google prioritises real practitioners</h3>
+      <p>Individual clinician profiles carry strong authority signals. A named consultant with a verified profile outranks a generic clinic listing more often than not.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⊞</div>
+      <h3>More listings = more map coverage</h3>
+      <p>Each profile is eligible to appear in local map packs independently. 10 clinicians means 10 chances to show up for "psychiatrist near me" or "private gynaecologist London".</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">★</div>
+      <h3>Reviews become distributed trust signals</h3>
+      <p>Instead of all reviews sitting on one profile, each clinician builds their own. That's stronger credibility — and more resilience if one clinician leaves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMERCIAL HOOK -->
+<section class="commercial-section">
+  <div class="commercial-inner">
+    <div class="commercial-copy">
+      <p class="section-label reveal">The business case</p>
+      <h2 class="reveal">When a clinician leaves, you're not left with nothing.</h2>
+      <p class="reveal">Most clinics don't think about what happens to the digital asset when a consultant moves on. With properly structured GBP profiles, you hold the value — not them.</p>
+    </div>
+    <div class="scenario-cards reveal">
+      <div class="scenario">
+        <h4>Transfer the profile</h4>
+        <p>When a clinician leaves, you can transfer their Google profile to their replacement — retaining the reviews, the ranking history, and the visibility you've built.</p>
+      </div>
+      <div class="scenario">
+        <h4>Or charge a handover fee</h4>
+        <p>The profile has real commercial value. Some clinics charge departing clinicians a fee to take their profile with them. That's a legitimate income stream from SEO work you've already paid for.</p>
+      </div>
+      <div class="scenario">
+        <h4>You own the asset either way</h4>
+        <p>We set up profiles under your clinic's ownership. The reviews, rankings, and data stay with your practice — not with the individual clinician or the agency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <p class="section-label reveal">Get started</p>
+  <h2 class="reveal">See how this would<br>work for <em>your clinic.</em></h2>
+  <p class="sub reveal">Tell us how many clinicians you have. We'll walk you through exactly what we'd do — and what it's worth.</p>
+  <a href="https://wa.me/YOURNUMBER" class="btn-primary reveal" target="_blank" style="display:inline-flex; margin: 0 auto;">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.12 1.533 5.845L.054 23.5l5.8-1.519A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.853 0-3.587-.5-5.084-1.37l-.363-.214-3.443.901.92-3.349-.235-.375A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Message us on WhatsApp
+  </a>
+  <p class="cta-note reveal">No commitment. Straight answers. UK-based.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="font-size:1rem">Fenn<span style="color:var(--accent)">.</span>Digital</a>
+  <p>© 2025 Fenn Digital Ltd.</p>
+  <p><a href="mailto:hello@fenn.digital">hello@fenn.digital</a></p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
