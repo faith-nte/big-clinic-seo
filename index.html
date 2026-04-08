@@ -257,7 +257,8 @@
   .video-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 9 / 16; /* keep portrait video unstretched */
+    max-width: 440px;
     border: 1px solid var(--border-mid);
     border-radius: 6px;
     overflow: hidden;
